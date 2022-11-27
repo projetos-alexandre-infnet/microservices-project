@@ -1,4 +1,4 @@
-package com.infnet.paises.model;
+package com.infnet.paises.model.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
