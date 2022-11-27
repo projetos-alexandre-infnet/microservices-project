@@ -1,7 +1,8 @@
 package com.infnet.paises.web;
 
 import com.infnet.paises.model.service.CountryService;
-import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,8 +19,8 @@ public class CountryController {
     }
 
     @GetMapping("/countries")
-    public HttpEntity<String> findCodeByCountryName(@RequestParam("name") String name) {
+    public ResponseEntity<String> findCodeByCountryName(@RequestParam("name") String name) {
         String founded = service.findByCountryName(name);
-        return new HttpEntity<>(founded);
+        return new ResponseEntity<>(founded, HttpStatus.OK);
     }
 }
