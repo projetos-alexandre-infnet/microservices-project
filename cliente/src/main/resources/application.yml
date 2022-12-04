@@ -1,5 +1,8 @@
+spring:
+  application:
+    name: cliente
 server:
-  port: 8888
+  port: 8088
 
 feign:
   client:
@@ -8,3 +11,9 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
         loggerLevel: basic
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
