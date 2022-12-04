@@ -1,8 +1,5 @@
 server:
   port: 8089
-springdoc:
-  api-docs:
-    path: /paises-openapi
 spring:
   application:
     name: paises
@@ -15,6 +12,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgres
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
 eureka:
   client:
     registerWithEureka: true
