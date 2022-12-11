@@ -1,25 +1,23 @@
 package com.infnet.cliente;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1")
 public class PaisesController{
 
-    private PaisesAPIClient client;
+    private Client client;
 
-    public PaisesController(PaisesAPIClient client) {
+    public PaisesController(Client client) {
         this.client = client;
     }
 
-    @GetMapping("/phone-code/{country}")
-    public ResponseEntity<String> getPhoneCodeByCountryName(String country) {
-        String codeByCountryName = client.getCodeByCountryName(country);
-
-        return new ResponseEntity<>(codeByCountryName, HttpStatus.OK);
+    @GetMapping("/phone-code")
+    public ResponseEntity<String> getPhoneCodeByCountryName(@RequestParam("name") String name) {
+        return client.getCountry(name);
     }
 }
