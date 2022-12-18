@@ -25,7 +25,28 @@ fornece o código telefônico de um país passado por parâmetro.
 Temos ainda implementados na aplicação:
 
 ## Monitoramento
+Dashboard criado no Grafana para o microsserviço Países:
 
+![dashboard 1](paises/images/img.png)
+![dashboard 2](paises/images/img_1.png)
+![dashboard 3](paises/images/img_2.png)
+![dashboard 4](paises/images/img_3.png)
+
+Logs do microsserviço países indexados no Prometheus.
+Neste caso usou-se os logs do tipo "info"
+
+![dashboard 5](paises/images/img_4.png)
+![dashboard 5](paises/images/img_5.png)
+
+Logs com Sleuth do microsserviço "cliente" no Zipkin:
+
+![dashboard 5](paises/images/img_6.png)
+![dashboard 5](paises/images/img_7.png)
+
+
+Logs com Sleuth no microsserviço "Cliente"
+
+![Logs com Sleuth no microsserviço "cliente"](paises/images/img_5.png)
 
 ## Algumas tecnologias usadas
 - Docker compose

@@ -20,38 +20,38 @@ services:
       - postgres
 
   prometheus:
-    image: prom/prometheus
-    user: root
-    container_name: prometheus
-    hostname: prometheus
-    restart: unless-stopped
+    image: prom/prometheus:v2.38.0
+    network_mode: host
+    container_name: prometheus-container
     volumes:
-      - ./docker/prometheus/config:/etc/prometheus
-      - ./docker/prometheus/data:/prometheus
+      - ./prometheus/:/etc/prometheus/
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
     ports:
-      - '9090:9090'
-    networks:
-      - metrics
+      - "9090:9090"
+    restart: always
 
   grafana:
-    image: grafana/grafana
-    container_name: grafana
-    hostname: grafana
+    image: grafana/grafana-oss:9.1.4
+    user: "$UID:$GID"
+    network_mode: host
+    container_name: grafana-container
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/:/var/lib/grafana
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
-    restart: unless-stopped
+      - GF_SERVER_DOMAIN=localhost
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: infnet-zipkin
     ports:
-      - '3000:3000'
-    networks:
-      - metrics
+      - "9411:9411"
 
 volumes:
   postgres:
     driver: local
-
-networks:
-  metrics:
-    driver: bridge
